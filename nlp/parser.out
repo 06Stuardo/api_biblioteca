@@ -1,0 +1,321 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    COUNT
+
+Grammar
+
+Rule 0     S' -> query
+Rule 1     ignore -> EL
+Rule 2     ignore -> LOS
+Rule 3     ignore -> LAS
+Rule 4     ignore -> LO
+Rule 5     ignore_opt -> ignore
+Rule 6     ignore_opt -> empty
+Rule 7     empty -> <empty>
+Rule 8     field_list -> STRING
+Rule 9     field_list -> field_list COMMA STRING
+Rule 10    field_list -> field_list Y STRING
+Rule 11    field_list -> field_list COMMA Y STRING
+Rule 12    field_list -> field_list O STRING
+Rule 13    condition -> DONDE condition_list
+Rule 14    condition_opt -> condition
+Rule 15    condition_opt -> empty
+Rule 16    condition_list -> STRING SEA STRING
+Rule 17    query -> SHOW ignore_opt field_list DE STRING condition_opt
+
+Terminals, with rules where they appear
+
+COMMA                : 9 11
+COUNT                : 
+DE                   : 17
+DONDE                : 13
+EL                   : 1
+LAS                  : 3
+LO                   : 4
+LOS                  : 2
+O                    : 12
+SEA                  : 16
+SHOW                 : 17
+STRING               : 8 9 10 11 12 16 16 17
+Y                    : 10 11
+error                : 
+
+Nonterminals, with rules where they appear
+
+condition            : 14
+condition_list       : 13
+condition_opt        : 17
+empty                : 6 15
+field_list           : 9 10 11 12 17
+ignore               : 5
+ignore_opt           : 17
+query                : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . query
+    (17) query -> . SHOW ignore_opt field_list DE STRING condition_opt
+
+    SHOW            shift and go to state 2
+
+    query                          shift and go to state 1
+
+state 1
+
+    (0) S' -> query .
+
+
+
+state 2
+
+    (17) query -> SHOW . ignore_opt field_list DE STRING condition_opt
+    (5) ignore_opt -> . ignore
+    (6) ignore_opt -> . empty
+    (1) ignore -> . EL
+    (2) ignore -> . LOS
+    (3) ignore -> . LAS
+    (4) ignore -> . LO
+    (7) empty -> .
+
+    EL              shift and go to state 6
+    LOS             shift and go to state 7
+    LAS             shift and go to state 8
+    LO              shift and go to state 9
+    STRING          reduce using rule 7 (empty -> .)
+
+    ignore_opt                     shift and go to state 3
+    ignore                         shift and go to state 4
+    empty                          shift and go to state 5
+
+state 3
+
+    (17) query -> SHOW ignore_opt . field_list DE STRING condition_opt
+    (8) field_list -> . STRING
+    (9) field_list -> . field_list COMMA STRING
+    (10) field_list -> . field_list Y STRING
+    (11) field_list -> . field_list COMMA Y STRING
+    (12) field_list -> . field_list O STRING
+
+    STRING          shift and go to state 11
+
+    field_list                     shift and go to state 10
+
+state 4
+
+    (5) ignore_opt -> ignore .
+
+    STRING          reduce using rule 5 (ignore_opt -> ignore .)
+
+
+state 5
+
+    (6) ignore_opt -> empty .
+
+    STRING          reduce using rule 6 (ignore_opt -> empty .)
+
+
+state 6
+
+    (1) ignore -> EL .
+
+    STRING          reduce using rule 1 (ignore -> EL .)
+
+
+state 7
+
+    (2) ignore -> LOS .
+
+    STRING          reduce using rule 2 (ignore -> LOS .)
+
+
+state 8
+
+    (3) ignore -> LAS .
+
+    STRING          reduce using rule 3 (ignore -> LAS .)
+
+
+state 9
+
+    (4) ignore -> LO .
+
+    STRING          reduce using rule 4 (ignore -> LO .)
+
+
+state 10
+
+    (17) query -> SHOW ignore_opt field_list . DE STRING condition_opt
+    (9) field_list -> field_list . COMMA STRING
+    (10) field_list -> field_list . Y STRING
+    (11) field_list -> field_list . COMMA Y STRING
+    (12) field_list -> field_list . O STRING
+
+    DE              shift and go to state 12
+    COMMA           shift and go to state 13
+    Y               shift and go to state 14
+    O               shift and go to state 15
+
+
+state 11
+
+    (8) field_list -> STRING .
+
+    DE              reduce using rule 8 (field_list -> STRING .)
+    COMMA           reduce using rule 8 (field_list -> STRING .)
+    Y               reduce using rule 8 (field_list -> STRING .)
+    O               reduce using rule 8 (field_list -> STRING .)
+
+
+state 12
+
+    (17) query -> SHOW ignore_opt field_list DE . STRING condition_opt
+
+    STRING          shift and go to state 16
+
+
+state 13
+
+    (9) field_list -> field_list COMMA . STRING
+    (11) field_list -> field_list COMMA . Y STRING
+
+    STRING          shift and go to state 17
+    Y               shift and go to state 18
+
+
+state 14
+
+    (10) field_list -> field_list Y . STRING
+
+    STRING          shift and go to state 19
+
+
+state 15
+
+    (12) field_list -> field_list O . STRING
+
+    STRING          shift and go to state 20
+
+
+state 16
+
+    (17) query -> SHOW ignore_opt field_list DE STRING . condition_opt
+    (14) condition_opt -> . condition
+    (15) condition_opt -> . empty
+    (13) condition -> . DONDE condition_list
+    (7) empty -> .
+
+    DONDE           shift and go to state 24
+    $end            reduce using rule 7 (empty -> .)
+
+    condition_opt                  shift and go to state 21
+    condition                      shift and go to state 22
+    empty                          shift and go to state 23
+
+state 17
+
+    (9) field_list -> field_list COMMA STRING .
+
+    DE              reduce using rule 9 (field_list -> field_list COMMA STRING .)
+    COMMA           reduce using rule 9 (field_list -> field_list COMMA STRING .)
+    Y               reduce using rule 9 (field_list -> field_list COMMA STRING .)
+    O               reduce using rule 9 (field_list -> field_list COMMA STRING .)
+
+
+state 18
+
+    (11) field_list -> field_list COMMA Y . STRING
+
+    STRING          shift and go to state 25
+
+
+state 19
+
+    (10) field_list -> field_list Y STRING .
+
+    DE              reduce using rule 10 (field_list -> field_list Y STRING .)
+    COMMA           reduce using rule 10 (field_list -> field_list Y STRING .)
+    Y               reduce using rule 10 (field_list -> field_list Y STRING .)
+    O               reduce using rule 10 (field_list -> field_list Y STRING .)
+
+
+state 20
+
+    (12) field_list -> field_list O STRING .
+
+    DE              reduce using rule 12 (field_list -> field_list O STRING .)
+    COMMA           reduce using rule 12 (field_list -> field_list O STRING .)
+    Y               reduce using rule 12 (field_list -> field_list O STRING .)
+    O               reduce using rule 12 (field_list -> field_list O STRING .)
+
+
+state 21
+
+    (17) query -> SHOW ignore_opt field_list DE STRING condition_opt .
+
+    $end            reduce using rule 17 (query -> SHOW ignore_opt field_list DE STRING condition_opt .)
+
+
+state 22
+
+    (14) condition_opt -> condition .
+
+    $end            reduce using rule 14 (condition_opt -> condition .)
+
+
+state 23
+
+    (15) condition_opt -> empty .
+
+    $end            reduce using rule 15 (condition_opt -> empty .)
+
+
+state 24
+
+    (13) condition -> DONDE . condition_list
+    (16) condition_list -> . STRING SEA STRING
+
+    STRING          shift and go to state 27
+
+    condition_list                 shift and go to state 26
+
+state 25
+
+    (11) field_list -> field_list COMMA Y STRING .
+
+    DE              reduce using rule 11 (field_list -> field_list COMMA Y STRING .)
+    COMMA           reduce using rule 11 (field_list -> field_list COMMA Y STRING .)
+    Y               reduce using rule 11 (field_list -> field_list COMMA Y STRING .)
+    O               reduce using rule 11 (field_list -> field_list COMMA Y STRING .)
+
+
+state 26
+
+    (13) condition -> DONDE condition_list .
+
+    $end            reduce using rule 13 (condition -> DONDE condition_list .)
+
+
+state 27
+
+    (16) condition_list -> STRING . SEA STRING
+
+    SEA             shift and go to state 28
+
+
+state 28
+
+    (16) condition_list -> STRING SEA . STRING
+
+    STRING          shift and go to state 29
+
+
+state 29
+
+    (16) condition_list -> STRING SEA STRING .
+
+    $end            reduce using rule 16 (condition_list -> STRING SEA STRING .)
+
