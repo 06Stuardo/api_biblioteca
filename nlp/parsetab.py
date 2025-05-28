@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'queryCOMMA COUNT DE DONDE EL LAS LO LOS O SEA SHOW STRING Yignore : ELignore : LOSignore : LASignore : LOignore_opt : ignore\n                  | emptyempty :field_list : STRINGfield_list : field_list COMMA STRING\n                  | field_list Y STRING\n                  | field_list COMMA Y STRING\n                  | field_list O STRINGcondition : DONDE condition_listcondition_opt : condition\n                     | emptycondition_list : STRING SEA STRINGquery : SHOW ignore_opt field_list DE STRING condition_opt'
+_lr_signature = 'queryCOMMA COUNT DE DONDE EL LA LAS LO LOS O SEA SHOW STRING Yignore : EL\n              | LA\n              | LOS\n              | LAS\n              | LOignore_opt : ignoreignore_opt : emptyempty :field_list : STRINGfield_list : field_list COMMA STRINGfield_list : field_list Y STRINGfield_list : field_list COMMA Y STRINGfield_table : field_list DE STRINGfield_table : field_table Y field_list DE STRINGcondition : DONDE condition_listcondition_list : STRING SEA STRINGcondition_list : condition_list Y STRING SEA STRINGcondition_list : condition_list O STRING SEA STRINGcondition_opt : conditioncondition_opt : emptyquery : SHOW ignore_opt field_table condition_optquery : COUNT ignore_opt field_table condition_optquery : COUNT STRING\n             | COUNT STRING condition'
     
-_lr_action_items = {'SHOW':([0,],[2,]),'$end':([1,16,21,22,23,26,29,],[0,-7,-17,-14,-15,-13,-16,]),'EL':([2,],[6,]),'LOS':([2,],[7,]),'LAS':([2,],[8,]),'LO':([2,],[9,]),'STRING':([2,3,4,5,6,7,8,9,12,13,14,15,18,24,28,],[-7,11,-5,-6,-1,-2,-3,-4,16,17,19,20,25,27,29,]),'DE':([10,11,17,19,20,25,],[12,-8,-9,-10,-12,-11,]),'COMMA':([10,11,17,19,20,25,],[13,-8,-9,-10,-12,-11,]),'Y':([10,11,13,17,19,20,25,],[14,-8,18,-9,-10,-12,-11,]),'O':([10,11,17,19,20,25,],[15,-8,-9,-10,-12,-11,]),'DONDE':([16,],[24,]),'SEA':([27,],[28,]),}
+_lr_action_items = {'SHOW':([0,],[2,]),'COUNT':([0,],[3,]),'$end':([1,13,14,17,18,20,22,23,27,28,31,42,43,46,47,],[0,-23,-8,-8,-24,-21,-19,-20,-22,-15,-13,-16,-14,-17,-18,]),'EL':([2,3,],[7,7,]),'LA':([2,3,],[8,8,]),'LOS':([2,3,],[9,9,]),'LAS':([2,3,],[10,10,]),'LO':([2,3,],[11,11,]),'STRING':([2,3,4,5,6,7,8,9,10,11,12,19,21,24,25,26,33,35,36,37,38,44,45,],[-8,13,16,-6,-7,-1,-2,-3,-4,-5,16,29,16,31,32,34,39,40,41,42,43,46,47,]),'DONDE':([13,14,17,31,43,],[19,19,19,-13,-14,]),'Y':([14,15,16,17,25,28,30,31,32,34,39,42,43,46,47,],[21,26,-9,21,33,35,26,-13,-10,-11,-12,-16,-14,-17,-18,]),'DE':([15,16,30,32,34,39,],[24,-9,38,-10,-11,-12,]),'COMMA':([15,16,30,32,34,39,],[25,-9,25,-10,-11,-12,]),'O':([28,42,46,47,],[36,-16,-17,-18,]),'SEA':([29,40,41,],[37,44,45,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'query':([0,],[1,]),'ignore_opt':([2,],[3,]),'ignore':([2,],[4,]),'empty':([2,16,],[5,23,]),'field_list':([3,],[10,]),'condition_opt':([16,],[21,]),'condition':([16,],[22,]),'condition_list':([24,],[26,]),}
+_lr_goto_items = {'query':([0,],[1,]),'ignore_opt':([2,3,],[4,12,]),'ignore':([2,3,],[5,5,]),'empty':([2,3,14,17,],[6,6,23,23,]),'field_table':([4,12,],[14,17,]),'field_list':([4,12,21,],[15,15,30,]),'condition':([13,14,17,],[18,22,22,]),'condition_opt':([14,17,],[20,27,]),'condition_list':([19,],[28,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,21 +27,28 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> query","S'",1,None,None,None),
-  ('ignore -> EL','ignore',1,'p_ignore_article_el','parser.py',33),
-  ('ignore -> LOS','ignore',1,'p_ignore_article_los','parser.py',34),
-  ('ignore -> LAS','ignore',1,'p_ignore_article_las','parser.py',35),
-  ('ignore -> LO','ignore',1,'p_ignore_article_lo','parser.py',36),
-  ('ignore_opt -> ignore','ignore_opt',1,'p_ignore_opt','parser.py',38),
-  ('ignore_opt -> empty','ignore_opt',1,'p_ignore_opt','parser.py',39),
-  ('empty -> <empty>','empty',0,'p_empty','parser.py',43),
-  ('field_list -> STRING','field_list',1,'p_field_list_single','parser.py',45),
-  ('field_list -> field_list COMMA STRING','field_list',3,'p_field_list_multi','parser.py',49),
-  ('field_list -> field_list Y STRING','field_list',3,'p_field_list_multi','parser.py',50),
-  ('field_list -> field_list COMMA Y STRING','field_list',4,'p_field_list_multi','parser.py',51),
-  ('field_list -> field_list O STRING','field_list',3,'p_field_list_multi','parser.py',52),
+  ('ignore -> EL','ignore',1,'p_ignore_article','parser.py',7),
+  ('ignore -> LA','ignore',1,'p_ignore_article','parser.py',8),
+  ('ignore -> LOS','ignore',1,'p_ignore_article','parser.py',9),
+  ('ignore -> LAS','ignore',1,'p_ignore_article','parser.py',10),
+  ('ignore -> LO','ignore',1,'p_ignore_article','parser.py',11),
+  ('ignore_opt -> ignore','ignore_opt',1,'p_ignore_opt','parser.py',15),
+  ('ignore_opt -> empty','ignore_opt',1,'p_ignore_opt_empty','parser.py',19),
+  ('empty -> <empty>','empty',0,'p_empty','parser.py',23),
+  ('field_list -> STRING','field_list',1,'p_field_list_single','parser.py',28),
+  ('field_list -> field_list COMMA STRING','field_list',3,'p_field_list_comma','parser.py',32),
+  ('field_list -> field_list Y STRING','field_list',3,'p_field_list_y','parser.py',36),
+  ('field_list -> field_list COMMA Y STRING','field_list',4,'p_field_list_comma_y','parser.py',40),
+  ('field_table -> field_list DE STRING','field_table',3,'p_field_table_pair','parser.py',45),
+  ('field_table -> field_table Y field_list DE STRING','field_table',5,'p_field_table_pair_and','parser.py',50),
   ('condition -> DONDE condition_list','condition',2,'p_condition','parser.py',56),
-  ('condition_opt -> condition','condition_opt',1,'p_condition_opt','parser.py',60),
-  ('condition_opt -> empty','condition_opt',1,'p_condition_opt','parser.py',61),
-  ('condition_list -> STRING SEA STRING','condition_list',3,'p_condition_list_simple','parser.py',68),
-  ('query -> SHOW ignore_opt field_list DE STRING condition_opt','query',6,'p_query_mostrar_varios','parser.py',76),
+  ('condition_list -> STRING SEA STRING','condition_list',3,'p_condition_list_simple','parser.py',60),
+  ('condition_list -> condition_list Y STRING SEA STRING','condition_list',5,'p_condition_list_and','parser.py',66),
+  ('condition_list -> condition_list O STRING SEA STRING','condition_list',5,'p_condition_list_or','parser.py',72),
+  ('condition_opt -> condition','condition_opt',1,'p_condition_opt','parser.py',78),
+  ('condition_opt -> empty','condition_opt',1,'p_condition_opt_empty','parser.py',82),
+  ('query -> SHOW ignore_opt field_table condition_opt','query',4,'p_query_mostrar','parser.py',87),
+  ('query -> COUNT ignore_opt field_table condition_opt','query',4,'p_query_count','parser.py',108),
+  ('query -> COUNT STRING','query',2,'p_query_contar','parser.py',127),
+  ('query -> COUNT STRING condition','query',3,'p_query_contar','parser.py',128),
 ]

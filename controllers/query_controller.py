@@ -43,7 +43,8 @@ def obtener_reportes_con_resultado():
                 data = [dict(zip(columnas, fila)) for fila in filas]
                 resultados.append({"nombre": nombre.upper(), "resultado": data})
             except Exception as e:
-                resultados.append({"nombre": nombre.upper(), "error": str(e)})
+                print("Error al obtener reporte:", e)
+                #resultados.append({"nombre": nombre.upper(), "error": str(e)})
 
         return resultados
     except Exception as e:
