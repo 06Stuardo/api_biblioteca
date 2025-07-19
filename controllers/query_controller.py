@@ -1,4 +1,4 @@
-from db.connection import get_connection
+from db.connection import get_connection, get_connection_etl
 
 def ejecutar_query(sql: str) -> list[dict] | dict:
     try:
