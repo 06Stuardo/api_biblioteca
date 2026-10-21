@@ -4,3 +4,8 @@
 __pycache__/
 *.pyc
 .idea/
+.coverage
+coverage.xml
+htmlcov/
+.pytest_cache/
+.scannerwork/
