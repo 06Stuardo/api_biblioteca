@@ -1,0 +1,40 @@
+﻿name: CI - Pruebas y SonarQube
+
+on:
+  push:
+    branches:
+      - desarrollo
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  pruebas-y-analisis:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Ejecutar pruebas y cobertura
+        run: |
+          python -m pytest tests/ -v --cov=nlp.logic --cov=nlp.lexer_rules --cov-report=xml:coverage.xml --cov-report=term-missing
+
+      - name: Analizar con SonarQube Cloud
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: SonarSource/sonarqube-scan-action@v6
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

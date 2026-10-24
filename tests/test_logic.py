@@ -33,3 +33,7 @@ def test_text_to_sql_error_parser():
     with patch("nlp.logic.parser.parse", side_effect=ValueError("Error de prueba")):
         resultado = text_to_sql("MOSTRAR LIBROS")
         assert resultado == "Error: Error de prueba"
+
+
+def test_normalizar_correo_con_tilde():
+    assert normalizar_entrada("Mostrar correo electrónico") == "mostrar correo"

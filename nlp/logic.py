@@ -1,6 +1,7 @@
 from .parser import parser
 import logging
 import re
+import unicodedata
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -16,6 +17,10 @@ def text_to_sql(texto: str) -> str:
 
 def normalizar_entrada(texto: str) -> str:
     texto = texto.lower()
+    texto = "".join(
+        caracter for caracter in unicodedata.normalize("NFD", texto)
+        if unicodedata.category(caracter) != "Mn"
+    )
 
     # Reemplazos personalizados
     reemplazos = {
